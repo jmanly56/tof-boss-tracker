@@ -67,4 +67,4 @@ Using an internal persistent database would save a lot of manual work on future 
 [![](https://i.imgur.com/ralv6Ay.png)](https://i.imgur.com/ralv6Ay.png)
 
 ## License
-[MPL 2.0](https://choosealicense.com/licenses/mpl-2.0/)
+[MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
