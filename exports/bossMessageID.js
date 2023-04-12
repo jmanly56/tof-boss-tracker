@@ -192,6 +192,7 @@ exports.bossTimers = [
     { key: `scyllaChannel12`, messageID: `` },
     { key: `scyllaChannel13`, messageID: `` },
     { key: `scyllaChannel14`, messageID: `` },
+    { key: `scyllaChannel15`, messageID: `` },
     { key: `scyllaChannel16`, messageID: `` },
     { key: `scyllaChannel17`, messageID: `` },
     { key: `scyllaChannel18`, messageID: `` },
