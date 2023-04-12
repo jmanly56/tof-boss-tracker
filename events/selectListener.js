@@ -15,7 +15,7 @@ client.on(Events.InteractionCreate, async interaction => {
         const selected = interaction.values[0];
         // Cache and set the channel that the interaction came from.
         const channel = client.channels.cache.get(interaction.channelId);
-        // Set the 
+        // Set the boss chanel number based on the interaction choice value minus the words.
         let channelNumber = selected.match(/\d+/g);
         // Match the selected value from the menu interaction to a key in '../exports/bossMessageID.js'.
         let bossTimerID = bossTimers.bossTimers.find(r => r.key === selected) || { key: "error", value: `Something went wrong or this item is not yet finished. The BOT author has been notified.` }
