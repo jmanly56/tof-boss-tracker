@@ -4,12 +4,18 @@
   "description": "A BOT to track boss kills in Tower of Fantasy.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "node deploy.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "MPL-2.0",
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.7"
   }
 }
