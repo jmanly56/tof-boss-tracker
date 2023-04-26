@@ -1,4 +1,4 @@
-module.exports = {
+const BossInfo = {
     Apophis: {numChannels: 16},
     Barbarossa: {numChannels: 16},
     Culton: {numChannels: 8},
@@ -13,5 +13,9 @@ module.exports = {
     Robarg: {numChannels: 16},
     Rudolph: {numChannels: 10},
     Scylla: {numChannels: 20},
-    Sobek: {numChannels: 16}
-}
+    Sobek: {numChannels: 16},
+};
+
+module.exports = {
+    BossInfo,
+};
