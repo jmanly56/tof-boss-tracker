@@ -24,12 +24,14 @@ module.exports = {
                 'channel'
             );
             const bossNames = Object.keys(BossInfo);
+            var ids = {};
             for (var key in bossNames) {
                 const t = await targetChannel.threads.cache.find(x => x.name === key);
+                var tID;
                 if (t === 'undefined') {
                     //TODO: Create thread
                 } else {
-                    const tID = t.id;
+                    ids[key] = t.id;
                 }
             }
         } catch (error) {
