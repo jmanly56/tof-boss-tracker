@@ -3,7 +3,7 @@ const {BossInfo} = require('../exports/constants.js');
 const {setAllIds, loadPosts, savePosts} = require('../lib/posts');
 
 /**
- *
+ * Create a forum post for bossName.
  * @param {String} bossName
  * @param {GuildTextThreadManager} channel
  * @returns The id of the created thread channel.
