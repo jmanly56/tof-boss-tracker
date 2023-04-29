@@ -6,7 +6,7 @@ const {setAllIds, loadPosts, savePosts} = require('../lib/posts');
  * Create a forum post for bossName.
  * @param {String} bossName
  * @param {GuildTextThreadManager} channel
- * @returns The id of the created thread channel.
+ * @returns The the created thread channel.
  */
 async function createPost(bossName, channel) {
     const thread = await channel.threads.create({
@@ -14,7 +14,7 @@ async function createPost(bossName, channel) {
         reason: 'Boss timer.',
         message: 'World boss timers:',
     });
-    return thread.id;
+    return thread;
 }
 
 // Set up the command for deployment.
@@ -48,11 +48,9 @@ module.exports = {
                     (x) => x.name === key
                 );
                 if (typeof t === 'undefined') {
-                    ids[key] = await createPost(key, targetChannel);
-                    console.log(ids[key]);
-                } else {
-                    ids[key] = t.id;
+                    t = await createPost(key, targetChannel);
                 }
+                ids[key] = t.id;
             }
             setAllIds(ids);
             savePosts();
