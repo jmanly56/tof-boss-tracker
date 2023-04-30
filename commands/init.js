@@ -1,4 +1,4 @@
-const {SlashCommandBuilder, GuildTextThreadManager} = require('discord.js');
+const {SlashCommandBuilder} = require('discord.js');
 const {BossInfo} = require('../exports/constants.js');
 const {setAllIds, loadPosts, savePosts} = require('../lib/posts');
 
@@ -44,7 +44,7 @@ module.exports = {
             var ids = {};
             for (var key in bossNames) {
                 key = bossNames[key];
-                const t = await targetChannel.threads.cache.find(
+                var t = await targetChannel.threads.cache.find(
                     (x) => x.name === key
                 );
                 if (typeof t === 'undefined') {
