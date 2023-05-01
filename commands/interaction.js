@@ -62,6 +62,7 @@ module.exports = {
                             .setStyle(ButtonStyle.Secondary)
                     );
                 // Cache the channel the interaction came from.
+                // eslint-disable-next-line no-undef
                 const channel = client.channels.cache.get(
                     interaction.channelId
                 );

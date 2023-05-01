@@ -1,10 +1,5 @@
-const {
-    ActionRowBuilder,
-    Events,
-    ModalBuilder,
-    TextInputBuilder,
-    TextInputStyle,
-} = require('discord.js');
+/* eslint-disable no-undef */
+const {Events} = require('discord.js');
 
 client.on(Events.InteractionCreate, async (interaction) => {
     try {
