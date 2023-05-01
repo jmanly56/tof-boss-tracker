@@ -9,7 +9,7 @@ const {
 client.on(Events.InteractionCreate, async (interaction) => {
     try {
         if (!interaction.isButton()) return;
-        if (interaction.customId === 'lineCooldown') {
+        if (interaction.customId === 'channelCooldown') {
             const timestamp = Date.now();
             const relativeTimer = Math.floor(timestamp / 1000 + 1800);
             interaction.reply({
