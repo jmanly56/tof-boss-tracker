@@ -1,6 +1,6 @@
 const {SlashCommandBuilder} = require('discord.js');
 const {BossInfo} = require('../exports/constants.js');
-const {setAllIds, loadPosts, savePosts} = require('../lib/posts');
+const {setAllIds, savePosts} = require('../lib/posts');
 
 /**
  * Create a forum post for bossName.
@@ -33,7 +33,6 @@ module.exports = {
 
     // Execute the command.
     async execute(interaction) {
-        loadPosts();
         try {
             await interaction.deferReply({ephemeral: true});
             const targetChannel = await interaction.options.getChannel(
