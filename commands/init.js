@@ -1,3 +1,7 @@
+/**
+ * Intialize the threads and messages for the bosses in `constants.js`.
+ */
+
 const {SlashCommandBuilder} = require('discord.js');
 const {BossInfo} = require('../exports/constants.js');
 const {setAllIds, savePosts} = require('../lib/posts');

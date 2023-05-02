@@ -1,3 +1,6 @@
+/**
+ * Contains information on the bosses.
+ */
 const BossInfo = {
     Apophis: {numChannels: 16},
     Barbarossa: {numChannels: 16},

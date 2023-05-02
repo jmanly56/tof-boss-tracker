@@ -5,6 +5,7 @@ const {
     SlashCommandBuilder,
     StringSelectMenuBuilder,
 } = require('discord.js');
+const {isBoss, createChannelOptions} = require('../lib/ui');
 
 // Set up the command for deployment.
 module.exports = {
@@ -17,23 +18,7 @@ module.exports = {
             option
                 .setName('bossmenu')
                 .setDescription('The boss timer menu you wish to create.')
-                .addChoices(
-                    // {name: 'Apophis', value: 'apophisMenu'},
-                    // {name: 'Barbarossa', value: 'barbarossaMenu'},
-                    // {name: 'Culton', value: 'cultonMenu'},
-                    // {name: 'Devourer', value: 'devourerMenu'},
-                    // {name: 'Dragon', value: 'dragonMenu'},
-                    // {name: 'Eva', value: 'evaMenu'},
-                    // {name: 'Frost Bot', value: 'frostbotMenu'},
-                    // {name: 'Haboela', value: 'haboelaMenu'},
-                    // {name: 'Harrah', value: 'harrahMenu'},
-                    // {name: 'Lucia', value: 'luciaMenu'},
-                    // {name: 'Magma', value: 'magmaMenu'},
-                    // {name: 'Robarg', value: 'robargMenu'},
-                    // {name: 'Rudolph', value: 'rudolphMenu'},
-                    // {name: 'Scylla', value: 'scyllaMenu'},
-                    // {name: 'Sobek', value: 'sobekMenu'}
-                )
+                .setRequired(true)
         ),
 
     // Execute the command.
@@ -43,25 +28,32 @@ module.exports = {
             await interaction.deferReply({ephemeral: true});
             await interaction.deleteReply();
             // Find the user-specified values of the command.
-            const object = interaction.options.getString('create');
-            const bossMenu = interaction.options.getString('bossmenu');
-            if (object === 'bossTimerMenu') {
+            const boss = interaction.options.getString('bossmenu');
+
+            if (isBoss(boss)) {
                 // Make a buton that replies with a countdown of the user's channel change.
-                const channelCooldownButton =
-                    new ActionRowBuilder().addComponents(
-                        new ButtonBuilder()
-                            .setCustomId('channelCooldown')
-                            .setLabel(`Channel Cooldown Timer`)
-                            .setStyle(ButtonStyle.Secondary)
-                    );
+                const buttonRow = new ActionRowBuilder().addComponents(
+                    new ButtonBuilder()
+                        .setCustomId('channelCooldown')
+                        .setLabel(`Channel Cooldown Timer`)
+                        .setStyle(ButtonStyle.Secondary)
+                );
                 // Cache the channel the interaction came from.
                 // eslint-disable-next-line no-undef
                 const channel = client.channels.cache.get(
                     interaction.channelId
                 );
-                // await channel.send({
-                //     components: [channelCooldownButton, sobekSelector],
-                // });
+                const select = new ActionRowBuilder().addComponents(
+                    new StringSelectMenuBuilder()
+                        .setCustomId(`${boss}Select`)
+                        .setPlaceholder('Channel')
+                        .addOptions(createChannelOptions(boss))
+                );
+                await channel.send({
+                    components: [buttonRow, select],
+                });
+            } else {
+                await interaction.editReply(`Error: Boss ${boss} not found.`);
             }
         } catch (error) {
             return console.log(error);
