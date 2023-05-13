@@ -4,7 +4,7 @@
 const {SlashCommandBuilder} = require('discord.js');
 const {isBoss} = require('../lib/ui');
 const {setTime} = require('../lib/timers');
-const
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('update')
@@ -27,24 +27,23 @@ module.exports = {
             option
                 .setName('time')
                 .setDescription(
-                    'The time to set, or the value. Format: DD Mmm YYYY HH:MM:SS TZ'
+                    'The time to set. Format: DD Mmm YYYY HH:MM:SS TZ'
                 )
         ),
 
     // Execute the command.
     async execute(interaction) {
         await interaction.deferReply({ephemeral: true});
-        const boss = interation.options.getString('boss');
+        const boss = interaction.options.getString('boss');
         const channel = interaction.options.getInteger('channel');
         const time = interaction.options.getString('time', false);
 
         if (isBoss(boss)) {
-            let x = (time != null) ? Date.parse(time) : Date.now();
+            let x = time != null ? Date.parse(time) : Date.now();
             try {
-                setTime(boss, channel, time);
-                //TODO: Update the message in the correct channel.
+                setTime(boss, channel, x);
             } catch (err) {
-                console.log(`Error occured trying to set boss time: ${err}`)
+                console.log(`Error occured trying to set boss time: ${err}`);
             }
         } else {
             await interaction.editReply('Could not find boss.');
